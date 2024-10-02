@@ -33,6 +33,8 @@
   <build_depend>libudev-dev</build_depend>
   <build_depend>dkms</build_depend>
   <build_depend>udev</build_depend>
+  <build_depend>libgl</build_depend>
+  <build_depend>glfw</build_depend>
 
   <export>
     <build_type>cmake</build_type>

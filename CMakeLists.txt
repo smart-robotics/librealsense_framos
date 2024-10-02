@@ -1,5 +1,5 @@
 #  minimum required cmake version: 3.1.0
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.10.0)
 project(librealsense2 LANGUAGES CXX C)
 
 include(CMake/lrs_options.cmake)
@@ -11,6 +11,8 @@ if(${FORCE_LIBUVC} OR ${FORCE_WINUSB_UVC} OR ${ANDROID_USB_HOST_UVC})
 endif()
 
 set( BUILD_FRAMOS_CODE ON )
+set( FRAMOS_DISABLE_LIBUSB ON )
+
 
 # Checking Internet connection, as TM2 needs to download the FW from amazon cloud
 if(BUILD_WITH_TM2 AND NOT INTERNET_CONNECTION)
@@ -33,6 +35,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/CMake)
 
 # include librealsense general configuration
 include(CMake/global_config.cmake)
+include(CMake/FindCameraSuite.cmake)
 
 if(BUILD_FRAMOS_CODE)
     # include librealsense camerasuite configuration
@@ -124,7 +127,7 @@ if ( (NOT BUILD_FRAMOS_CODE) AND ( BUILD_EXAMPLES OR BUILD_PC_STITCHING ) AND BU
 endif()
 
 if(BUILD_EXAMPLES)
-    add_subdirectory(examples)
+    #add_subdirectory(examples)
     add_subdirectory(tools)
 elseif(BUILD_TOOLS)
     add_subdirectory(tools)

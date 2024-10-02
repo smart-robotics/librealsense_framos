@@ -42,7 +42,10 @@ set(REALSENSE_GL_PUBLIC_HEADERS
 
 set(CMAKECONFIG_GL_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${LRS_GL_TARGET}")
 
-include(${CMAKE_SOURCE_DIR}/CMake/opengl_config.cmake)
+#include(${CMAKE_SOURCE_DIR}/CMake/opengl_config.cmake)
+
+find_package(OpenGL REQUIRED)
+set(DEPENDENCIES realsense2 glfw ${OPENGL_LIBRARIES})
 
 if (${BUILD_SHARED_LIBS} AND ${BUILD_EASYLOGGINGPP})
     list(APPEND REALSENSE_GL_CPP ../../third-party/easyloggingpp/src/easylogging++.cc)
